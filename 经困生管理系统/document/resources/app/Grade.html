@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>经困生管理系统</title>
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.css"/>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        a {
+            font-family: Arial, sans-serif;
+        }
+
+        .starlight {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper {
+            background-color: hsl(270, 10%, 10%);
+            display: flex;
+            justify-content: center;
+            height: auto;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .title {
+            color: white;
+            font-size: 4em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .subtitle {
+            color: hsla(0, 0%, 100%, 0.3);
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .head {
+            text-align: center;
+            justify-content: center;
+            height: auto;
+            flex-direction: column;
+            height: 100%;
+            font-size: 2em;
+        }
+
+
+
+    </style>
+<!--    <script src="preload.js"></script>-->
+
+</head>
+
+<body>
+<!--首页-->
+
+
+
+<div id="top_bottoms" style="height: 6%;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="navbar-brand" href="index.html">返回</a>
+        </div>
+        <!-- 按钮：退出
+        <a v-on:click="exit()" class="btn btn-danger navbar-right" href="#"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
+        -->
+    </div>
+</div>
+<div id="body" class="container-fluid rounded border" style="height: 93%;">
+    <div class="row" style="height: 100%;">
+        <!--MENU-->
+        <div id="menu_body" class="col-2 bg-white container-fluid rounded border">
+            <ul class="nav nav-pills flex-column" role="tablist">
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#oneGrade">一年级</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#twoGrade">二年级</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#threeGrade">三年级</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#fourGrade">四年级</a></li>
+            </ul>
+        </div>
+        <!--Main display?-->
+        <div id="main_body" class="col bg-light container-fluid rounded border" style="height: 100%;">
+            <div id="main_alert_display" style="position: fixed; left: 50%; z-index:999;"></div>
+            <!--页面-->
+            <div id="info_displayer" class="tab-content" style="height: 100%;">
+                <!--页面 经困生总体情况-->
+
+                <div id="oneGrade" class="container-fluid tab-pane" style="height: 100%;overflow: scroll">
+                    <div>&nbsp;&nbsp;&nbsp;</div>
+                    <div class="container-fluid bg-light">
+                        <button type="button" v-on:click="Botton_Refrash_input_message()"
+                                class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"
+                                data-target="#newpartymodal">登记学生信息
+                        </button>
+                    </div>
+
+
+                    <span class="head">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        计算机学院学生家庭经济情况量化测评指标分数表（一年级）
+                    </span>
+
+
+                    <div>
+                        <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">
+                            <table class="table table-condensed table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>学院</th>
+                                    <th>班级</th>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>家庭住址</th>
+                                    <th>是否建档立卡</th>
+                                    <th>评定分数</th>
+                                    <th>本次级别</th>
+                                </tr>
+                                </thead>
+                                <tbody v-for="(party,uid,index) in Partys" >
+                                    <tr v-if=" party.numInOne  ">
+                                        <td>{{party.numInOne}}</td>
+                                        <td>{{party.college}}</td>
+                                        <td>{{party.grade}}</td>
+                                        <td>{{party.stdID}}</td>
+                                        <td>{{party.stdName}}</td>
+                                        <td>{{party.address}}</td>
+                                        <td>{{party.isJDLK}}</td>
+                                        <td>{{party.marks}}</td>
+                                        <td>{{party.result}}</td>
+                                        <td>
+                                            <div class="col btn-group-sm">
+                                                <button class="btn border radio btn-outline-light text-black-50"
+                                                        v-on:click="Botton_Re_Party(uid)">修改
+                                                </button>
+                                                <button class="btn border radio btn-outline-light text-black-50"
+                                                        v-on:click="Botton_DEL_Party(uid)">删除
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="twoGrade" class="container-fluid tab-pane" style="height: 100%;overflow: scroll">
+                    <div>&nbsp;&nbsp;&nbsp;</div>
+                    <div class="container-fluid bg-light">
+                        <button type="button" v-on:click="Botton_Refrash_input_message()"
+                                class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"
+                                data-target="#newpartymodal">登记学生信息
+                        </button>
+                    </div>
+
+
+                    <span class="head">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        计算机学院学生家庭经济情况量化测评指标分数表（二年级）
+                    </span>
+
+
+                    <div>
+                        <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">
+                            <table class="table table-condensed table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>学院</th>
+                                    <th>班级</th>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>家庭住址</th>
+                                    <th>是否建档立卡</th>
+                                    <th>评定分数</th>
+                                    <th>本次级别</th>
+                                </tr>
+                                </thead>
+                                <tbody v-for="(party,uid,index) in Partys" >
+                                <tr v-if=" party.numInTwo  ">
+                                    <td>{{party.numInTwo}}</td>
+                                    <td>{{party.college}}</td>
+                                    <td>{{party.grade}}</td>
+                                    <td>{{party.stdID}}</td>
+                                    <td>{{party.stdName}}</td>
+                                    <td>{{party.address}}</td>
+                                    <td>{{party.isJDLK}}</td>
+                                    <td>{{party.marks}}</td>
+                                    <td>{{party.result}}</td>
+                                    <td>
+                                        <div class="col btn-group-sm">
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_Re_Party(uid)">修改
+                                            </button>
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_DEL_Party(uid)">删除
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="threeGrade" class="container-fluid tab-pane" style="height: 100%;overflow: scroll">
+                    <div>&nbsp;&nbsp;&nbsp;</div>
+                    <div class="container-fluid bg-light">
+                        <button type="button" v-on:click="Botton_Refrash_input_message()"
+                                class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"
+                                data-target="#newpartymodal">登记学生信息
+                        </button>
+                    </div>
+
+
+                    <span class="head">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        计算机学院学生家庭经济情况量化测评指标分数表（三年级）
+                    </span>
+
+
+                    <div>
+                        <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">
+                            <table class="table table-condensed table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>学院</th>
+                                    <th>班级</th>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>家庭住址</th>
+                                    <th>是否建档立卡</th>
+                                    <th>评定分数</th>
+                                    <th>本次级别</th>
+                                </tr>
+                                </thead>
+                                <tbody v-for="(party,uid,index) in Partys" >
+                                <tr v-if=" party.numInThree  ">
+                                    <td>{{party.numInThree}}</td>
+                                    <td>{{party.college}}</td>
+                                    <td>{{party.grade}}</td>
+                                    <td>{{party.stdID}}</td>
+                                    <td>{{party.stdName}}</td>
+                                    <td>{{party.address}}</td>
+                                    <td>{{party.isJDLK}}</td>
+                                    <td>{{party.marks}}</td>
+                                    <td>{{party.result}}</td>
+                                    <td>
+                                        <div class="col btn-group-sm">
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_Re_Party(uid)">修改
+                                            </button>
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_DEL_Party(uid)">删除
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="fourGrade" class="container-fluid tab-pane" style="height: 100%;overflow: scroll">
+                    <div>&nbsp;&nbsp;&nbsp;</div>
+                    <div class="container-fluid bg-light">
+                        <button type="button" v-on:click="Botton_Refrash_input_message()"
+                                class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"
+                                data-target="#newpartymodal">登记学生信息
+                        </button>
+                    </div>
+
+
+                    <span class="head">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        计算机学院学生家庭经济情况量化测评指标分数表（四年级）
+                    </span>
+
+
+                    <div>
+                        <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">
+                            <table class="table table-condensed table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>学院</th>
+                                    <th>班级</th>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>家庭住址</th>
+                                    <th>是否建档立卡</th>
+                                    <th>评定分数</th>
+                                    <th>本次级别</th>
+                                </tr>
+                                </thead>
+                                <tbody v-for="(party,uid,index) in Partys" >
+                                <tr v-if=" party.numInFour  ">
+                                    <td>{{party.numInFour}}</td>
+                                    <td>{{party.college}}</td>
+                                    <td>{{party.grade}}</td>
+                                    <td>{{party.stdID}}</td>
+                                    <td>{{party.stdName}}</td>
+                                    <td>{{party.address}}</td>
+                                    <td>{{party.isJDLK}}</td>
+                                    <td>{{party.marks}}</td>
+                                    <td>{{party.result}}</td>
+                                    <td>
+                                        <div class="col btn-group-sm">
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_Re_Party(uid)">修改
+                                            </button>
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_DEL_Party(uid)">删除
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="modal fade" id="newpartymodal">
+
+                    <div class="modal-dialog  modal-lg">
+                        <div class="modal-content">
+
+                            <!-- 模态框头部 -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">登记学生信息</h4>
+
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+                            <div class="modal-body">
+                                <div class="container form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">学生信息</span>
+                                        </div>
+                                        <input v-model="input_message.college" type="text"
+                                               class="form-control" placeholder="学院">
+                                        <input v-model="input_message.grade" type="text"
+                                               class="form-control" placeholder="班级">
+                                        <input v-model="input_message.stdID" type="text"
+                                               class="form-control" placeholder="学号">
+                                        <input v-model="input_message.stdName" type="text"
+                                               class="form-control" placeholder="姓名">
+                                        <input v-model="input_message.address" type="text"
+                                               class="form-control" placeholder="家庭住址">
+
+
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">评定信息</span>
+                                        </div>
+                                        <input v-model="input_message.isJDLK" type="text"
+                                               class="form-control" placeholder="是否建档立卡">
+                                        <input v-model="input_message.marks" type="text"
+                                               class="form-control" placeholder="评定分数">
+                                        <input v-model="input_message.result" type="text"
+                                               class="form-control" placeholder="本次级别">
+
+                                    </div>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">所属年级</span>
+                                        <select class="selectpicker form-control" data-style="btn-primary" style="min-width: 100px"
+                                          v-model="input_message.whichGrade">
+                                            <option disabled value=""></option>
+                                            <option value="1" >一年级</option>
+                                            <option value="2">二年级</option>
+                                            <option value="3">三年级</option>
+                                            <option value="4">四年级</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- 模态框底部 -->
+                            <div class="modal-footer">
+                                <button type="button" v-on:click="Botton_ADD_Party()"
+                                        class="btn btn-secondary">新建
+                                </button>
+                            </div>
+                            <div id="bottonaddptalert"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal fade" id="repartymodal">
+                    <div class="modal-dialog  modal-lg">
+                        <div class="modal-content">
+
+                            <!-- 模态框头部 -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">修改学生信息</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">学生信息</span>
+                                        </div>
+                                        <input v-model="input_message.college" type="text"
+                                               class="form-control" placeholder="学院">
+                                        <input v-model="input_message.grade" type="text"
+                                               class="form-control" placeholder="班级">
+                                        <input v-model="input_message.stdID" type="text"
+                                               class="form-control" placeholder="学号">
+                                        <input v-model="input_message.stdName" type="text"
+                                               class="form-control" placeholder="姓名">
+                                        <input v-model="input_message.address" type="text"
+                                               class="form-control" placeholder="家庭住址">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">评定信息</span>
+                                        </div>
+                                        <input v-model="input_message.isJDLK" type="text"
+                                               class="form-control" placeholder="是否建档立卡">
+                                        <input v-model="input_message.marks" type="text"
+                                               class="form-control" placeholder="评定分数">
+                                        <input v-model="input_message.result" type="text"
+                                               class="form-control" placeholder="本次级别">
+                                    </div>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">所属年级</span>
+                                        <select class="selectpicker form-control" data-style="btn-primary" style="min-width: 100px"
+                                                v-model="input_message.whichGrade">
+                                            <option disabled value=""></option>
+                                            <option value="1" >一年级</option>
+                                            <option value="2">二年级</option>
+                                            <option value="3">三年级</option>
+                                            <option value="4">四年级</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!-- 模态框底部 -->
+                            <div class="modal-footer">
+                                <button type="button" v-on:click="Botton_Cg_Party()"
+                                        class="btn btn-secondary">修改
+                                </button>
+                            </div>
+                            <div id="bottoncgptalert"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<script src="./bootstrap-fileinput/js/fileinput.js" type="text/javascript" charset="utf-8"></script>
+<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="./jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./index_funs.js" type="text/javascript" charset="utf-8"></script>
+<script src="./index_vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="./bootstrap-4.3.1-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./starlight.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+
+
+</body>
+
+</html>

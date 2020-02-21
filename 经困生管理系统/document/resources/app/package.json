@@ -1,0 +1,29 @@
+{
+  "name": "viliger_colaction",
+  "productName": "村务系统",
+  "version": "1.0.0",
+  "description": "viliger_colaction",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "install-app-deps",
+    "package": "electron-packager ."
+  },
+  "license": "MIT",
+  "config": {
+    "appCopyright":"沈阳航空航天大学"
+  },
+  "author": "沈阳航空航天大学计算机学院",
+  "devDependencies": {
+    "asar": "^2.0.1",
+    "electron": "^6.0.6",
+    "electron-builder": "^21.2.0",
+    "electron-packager": "^14.1.0",
+    "electron-prebuilt": "^1.4.13",
+    "electron-rebuild": "^1.8.6",
+    "sqlite3": "^4.1.0"
+  },
+  "dependencies": {
+    "vuejs-dialog": "^1.4.1"
+  }
+}

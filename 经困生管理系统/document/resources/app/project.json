@@ -1,0 +1,23 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "呐 现在开始放晴了哦",
+	"file" : "QQHD视频_20191201113050.mp4",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			}
+		}
+	},
+	"preview" : "preview.jpg",
+	"tags" : [ "Anime" ],
+	"title" : "天气之子动态壁纸",
+	"type" : "video",
+	"visibility" : "public"
+}

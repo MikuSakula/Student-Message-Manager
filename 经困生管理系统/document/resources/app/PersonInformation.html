@@ -1,0 +1,578 @@
+<!--<div id="PersonInformation" class="container-fluid tab-pane active" style="height: 100%;">-->
+
+<!--    <div class="row bg-white" style="height: 100%;">-->
+<!--        &lt;!&ndash;这里是导航树&ndash;&gt;-->
+<!--        <ul id="groups" class="col-2 border rounded"-->
+<!--            style="height: 100%;overflow: auto;list-style: none;">-->
+<!--            <li class="btn-group border rounded " style="width: 100%;">-->
+<!--                <button type="button" v-on:click="Botton_Refrash_input_groupname()"-->
+<!--                        class="btn btn-info border rounded btn-sm" data-toggle="modal"-->
+<!--                        data-target="#newgroupmodal">新建组</button>-->
+<!--                <div class="modal fade" id="newgroupmodal">-->
+<!--                    <div class="modal-dialog  modal-lg">-->
+<!--                        <div class="modal-content">-->
+
+<!--                            &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+<!--                            <div class="modal-header">-->
+<!--                                <h4 class="modal-title">添加新组</h4>-->
+<!--                                <button type="button" class="close"-->
+<!--                                        data-dismiss="modal">&times;</button>-->
+<!--                            </div>-->
+<!--                            <div class="modal-body">-->
+<!--                                <div class="container">-->
+<!--                                    <div class="input-group mb-3" style="width:250px;">-->
+<!--                                        <div class="input-group-prepend">-->
+<!--                                            <span class="input-group-text">新建组名</span>-->
+<!--                                        </div>-->
+<!--                                        <input v-model="input_groupname.groupname" type="text"-->
+<!--                                               class="form-control" placeholder="组名">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+<!--                            <div class="modal-footer">-->
+<!--                                <button type="button" v-on:click="Botton_ADD_Group()"-->
+<!--                                        class="btn btn-secondary">新建</button>-->
+<!--                            </div>-->
+<!--                            <div id="bottonaddgpalerts"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button id="newhouseholdbotton" type="button"-->
+<!--                        class="btn btn-info border rounded btn-sm"-->
+<!--                        v-on:click="Botton_Refrash_input_message()" data-toggle="modal">新建户</button>-->
+<!--                <div class="modal fade" id="newhouseholdmodal">-->
+<!--                    <div class="modal-dialog  modal-lg">-->
+<!--                        <div class="modal-content">-->
+
+<!--                            &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+<!--                            <div class="modal-header">-->
+<!--                                <h4 class="modal-title">添加新户</h4>-->
+<!--                                <button type="button" class="close"-->
+<!--                                        data-dismiss="modal">&times;</button>-->
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash; 模态框主体 &ndash;&gt;-->
+<!--                            <div class="modal-body">-->
+<!--                                <div class="container">-->
+<!--                                    <form class="form-group">-->
+<!--                                        <div class="input-group mb-3">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--                                                <span class="input-group-text">户主基本信息</span>-->
+<!--                                            </div>-->
+<!--                                            <input v-model="input_message.name" type="text"-->
+<!--                                                   class="form-control" placeholder="姓名">-->
+<!--                                            <input v-model="input_message.ownerid" type="text"-->
+<!--                                                   class="form-control" placeholder="身份证"-->
+<!--                                                   style="width: 150px;">-->
+<!--                                            <input v-model="input_message.sex" type="text"-->
+<!--                                                   class="form-control" placeholder="性别"-->
+<!--                                                   style="width: 20px;">-->
+<!--                                            <input v-model="input_message.birthday" type="text"-->
+<!--                                                   class="form-control" placeholder="出生年月">-->
+<!--                                            <input v-model="input_message.race" type="text"-->
+<!--                                                   class="form-control" placeholder="种族">-->
+<!--                                        </div>-->
+<!--                                        <div class="input-group mb-3">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--                                                <span class="input-group-text">户主工作信息</span>-->
+<!--                                            </div>-->
+<!--                                            <input v-model="input_message.political" type="text"-->
+<!--                                                   class="form-control" placeholder="政治面貌">-->
+<!--                                            <input v-model="input_message.education" type="text"-->
+<!--                                                   class="form-control" placeholder="学历"-->
+<!--                                                   style="width: 20px;">-->
+<!--                                            <input v-model="input_message.job" type="text"-->
+<!--                                                   class="form-control" placeholder="职务或专长">-->
+<!--                                            <input v-model="input_message.phone" type="text"-->
+<!--                                                   class="form-control" placeholder="联系电话"-->
+<!--                                                   style="width: 50px;">-->
+<!--                                            <input v-model="input_message.fc" type="text"-->
+<!--                                                   class="form-control" placeholder="是否建立档立卡"-->
+<!--                                                   style="width: 50px;">-->
+<!--                                        </div>-->
+<!--                                        <div class="input-group mb-3">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--                                                <span class="input-group-text">家庭信息</span>-->
+<!--                                            </div>-->
+<!--                                            <textarea v-model="input_message.income"-->
+<!--                                                      class="form-control" rows="7"-->
+<!--                                                      placeholder="年均收入及来源"></textarea>-->
+<!--                                            <textarea v-model="input_message.fielding"-->
+<!--                                                      class="form-control" rows="7"-->
+<!--                                                      placeholder="耕地面积"></textarea>-->
+<!--                                            <textarea v-model="input_message.breeding"-->
+<!--                                                      class="form-control" rows="7"-->
+<!--                                                      placeholder="养殖情况"></textarea>-->
+<!--                                            <textarea v-model="input_message.causeofpoverty"-->
+<!--                                                      class="form-control" rows="7"-->
+<!--                                                      placeholder="致贫原因"></textarea>-->
+<!--                                            <textarea v-model="input_message.remark"-->
+<!--                                                      class="form-control" rows="7"-->
+<!--                                                      placeholder="备注"></textarea>-->
+<!--                                        </div>-->
+<!--                                    </form>-->
+<!--                                    <form class="form-group">-->
+<!--                                        <div class="input-group mb-3" style="width:225px;">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--                                                <span class="input-group-text">家庭总人口</span>-->
+<!--                                            </div>-->
+<!--                                            <input v-model="input_message.familynum" type="text"-->
+<!--                                                   class="form-control" placeholder="人数">-->
+<!--                                        </div>-->
+
+<!--                                    </form>-->
+<!--                                    <form class="form-group">-->
+<!--                                        <div class="input-group mb-3" style="width:210px;">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--																	<span id="householdcreate_groupnuminput"-->
+<!--                                                                          class="input-group-text">属于组</span>-->
+<!--                                            </div>-->
+<!--                                            <select class="form-control"-->
+<!--                                                    v-model="input_message.groupnum">-->
+<!--                                                <option v-for="(group, groupnum, index) in Persons">-->
+<!--                                                    {{Groups2['g'+groupnum]}}</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+<!--                            <div class="modal-footer">-->
+<!--                                <button id="bottonaddhd" type="button"-->
+<!--                                        v-on:click="Botton_ADD_Household()"-->
+<!--                                        class="btn btn-secondary">添加</button>-->
+<!--                            </div>-->
+<!--                            <div id="bottonaddhdalerts"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button type="button" class="btn btn-info border rounded btn-sm"-->
+<!--                        v-on:click="Botton_Open_Find_People()" data-toggle="modal">查找人</button>-->
+<!--                <div class="modal fade" id="findpeoplemodal">-->
+<!--                    <div class="modal-dialog  modal-lg">-->
+<!--                        <div class="modal-content">-->
+
+<!--                            &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+<!--                            <div class="modal-header">-->
+<!--                                <h4 class="modal-title">查找人</h4>-->
+<!--                                <button type="button" class="close"-->
+<!--                                        data-dismiss="modal">&times;</button>-->
+<!--                            </div>-->
+<!--                            <div class="modal-body">-->
+<!--                                <div class="container form-inline">-->
+<!--                                    <div class="input-group mb-3" style="width:170px;">-->
+<!--                                        <div class="input-group-prepend">-->
+<!--                                            <span class="input-group-text">查找</span>-->
+<!--                                        </div>-->
+<!--                                        <select class="form-control"-->
+<!--                                                v-model="find_people_input.key">-->
+<!--                                            <option v-for="(key,index) in find_people_keys">{{key}}-->
+<!--                                            </option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                    <div class="input-group mb-3" style="width:350px;">-->
+<!--                                        <input v-model="find_people_input.value" type="text"-->
+<!--                                               class="form-control" placeholder="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+<!--                            <div class="modal-footer">-->
+<!--                                <button type="button" v-on:click="Botton_Begin_Find_People()"-->
+<!--                                        class="btn btn-secondary">查找</button>-->
+<!--                            </div>-->
+<!--                            <div id="bottonfindpeoalerts"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li v-for="(group, groupnum, index) in Persons" class="">-->
+<!--                <div class="btn-group rounded border" style="width: 100%;">-->
+<!--                    <button v-bind:href="'#group'+groupnum" data-toggle="collapse"-->
+<!--                            class="btn btn-sm container-fluid btn-warning"-->
+<!--                            v-bind:style="Groupcolor(groupnum)">{{Groups2['g'+groupnum]}}</button>-->
+<!--                    <button class="btn btn-sm btn-warning" v-on:click="Botton_DEL_Group(groupnum)"-->
+<!--                            v-bind:style="Groupcolor(groupnum)">x</button>-->
+<!--                </div>-->
+<!--                <ul v-bind:id="'group'+groupnum" class="collapse  rounded border border-warning"-->
+<!--                    style="list-style: none;">-->
+<!--                    <li v-for="household in group">-->
+<!--                        <button class="btn btn-sm btn-light rounded border container-fluid"-->
+<!--                                v-on:click="Botton_Change_Print(household)">{{household.name}}</button>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </li>-->
+
+<!--        </ul>-->
+
+<!--        &lt;!&ndash;信息面板&ndash;&gt;-->
+<!--        <div id="housholdinfodisplay" class="bg-light col" style="height: 100%;overflow: auto;">-->
+<!--            <div class="col rounded border bg-white" style="height: 22%;">-->
+<!--                <div class="row" style="height: 100%;">-->
+<!--                    <div class="col-10 border" style="height: 100%;">-->
+<!--                        <div class="row  border" style="height: 25%;">-->
+<!--                            <div class="col border"><strong>户主</strong></div>-->
+<!--                            <div class="col border">{{print_message.name}}</div>-->
+<!--                            <div class="col border"><strong>性别</strong></div>-->
+<!--                            <div class="col border">{{print_message.sex}}</div>-->
+<!--                            <div class="col-2 border"><strong>出生年月</strong></div>-->
+<!--                            <div class="col border">{{print_message.birthday}}</div>-->
+<!--                            <div class="col border"><strong>民族</strong></div>-->
+<!--                            <div class="col border">{{print_message.race}}</div>-->
+<!--                        </div>-->
+<!--                        <div class="row border" style="height: 25%;">-->
+<!--                            <div class="col-2 border"><strong>政治面貌</strong></div>-->
+<!--                            <div class="col border">{{print_message.political}}</div>-->
+<!--                            <div class="col-1 border"><strong>学历</strong></div>-->
+<!--                            <div class="col border">{{print_message.education}}</div>-->
+<!--                            <div class="col-2 border"><strong>职务或专长</strong></div>-->
+<!--                            <div class="col border">{{print_message.job}}</div>-->
+<!--                        </div>-->
+<!--                        <div class="row  border" style="height: 25%;">-->
+<!--                            <div class="col-2 border"><strong>身份证</strong></div>-->
+<!--                            <div class="col border">{{print_message.ownerid}}</div>-->
+<!--                            <div class="col-2 border"><strong>联系电话</strong></div>-->
+<!--                            <div class="col border">{{print_message.phone}}</div>-->
+<!--                        </div>-->
+<!--                        <div class="row  border" style="height: 25%;">-->
+<!--                            <div class="col-2 border"><strong>是否建档立卡</strong></div>-->
+<!--                            <div class="col border">{{print_message.fc}}</div>-->
+<!--                            <div class="col-2 border"><strong>家庭总人口</strong></div>-->
+<!--                            <div class="col border">{{print_message.familynum}}</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col rounded border" style="height: 100%;">-->
+<!--                        <div class="row" style="height: 100%;">-->
+<!--                            <div class="col rounded border" style="height: 100%;padding:0px;">-->
+<!--                                <img :src="'.\\照片\\'+print_message.photo" class="img-thumbnail img-responsive">-->
+<!--                            </div>-->
+<!--                            <div class="col-3 rounded border" style="height: 100%;">-->
+<!--                                <div class="row btn-group-vertical" style="height: 100%;">-->
+<!--                                    <button type="button"-->
+<!--                                            v-on:click="Botton_Re_Photo()"-->
+<!--                                            class="btn btn-outline-info btn-sm"-->
+<!--                                            style="font-size:10px;line-height: 12px;">更换照片</button>-->
+
+<!--                                    <div class="modal fade" id="rehouseholdphotomodal">-->
+<!--                                        <div class="modal-dialog  modal-lg">-->
+<!--                                            <div class="modal-content">-->
+
+<!--                                                &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+<!--                                                <div class="modal-header">-->
+<!--                                                    <h4 class="modal-title">更换照片</h4>-->
+<!--                                                    <button type="button" class="close"-->
+<!--                                                            data-dismiss="modal">&times;</button>-->
+<!--                                                </div>-->
+
+<!--                                                &lt;!&ndash; 模态框主体 &ndash;&gt;-->
+<!--                                                <div class="modal-body">-->
+<!--                                                    <div class="input-group mb-3">请将照片放在'照片'文件夹下</div>-->
+<!--                                                    <div class="input-group mb-3">-->
+<!--                                                        <div class="input-group-prepend">-->
+<!--																			<span-->
+<!--                                                                                    class="input-group-text">. /照片/</span>-->
+<!--                                                        </div>-->
+
+<!--                                                        <input v-model="input_message.photo"-->
+<!--                                                               type="text" class="form-control">-->
+
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+<!--                                                <div class="modal-footer">-->
+<!--                                                    <button type="button"-->
+<!--                                                            v-on:click="Botton_Cg_Photo()"-->
+<!--                                                            class="btn btn-secondary">修改</button>-->
+<!--                                                </div>-->
+<!--                                                <div id="bottonrehdphalerts"></div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+<!--                                    <button type="button" v-on:click="Botton_Re_Household()"-->
+<!--                                            class="btn btn-outline-info btn-sm"-->
+<!--                                            style="font-size:10px;line-height: 12px;">修改信息</button>-->
+<!--                                    <div class="modal fade" id="rehouseholdmodal">-->
+<!--                                        <div class="modal-dialog  modal-lg">-->
+<!--                                            <div class="modal-content">-->
+
+<!--                                                &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+<!--                                                <div class="modal-header">-->
+<!--                                                    <h4 class="modal-title">修改户信息</h4>-->
+<!--                                                    <button type="button" class="close"-->
+<!--                                                            data-dismiss="modal">&times;</button>-->
+<!--                                                </div>-->
+
+<!--                                                &lt;!&ndash; 模态框主体 &ndash;&gt;-->
+<!--                                                <div class="modal-body">-->
+<!--                                                    <div class="container">-->
+<!--                                                        <form class="form-group">-->
+<!--                                                            <div class="input-group mb-3">-->
+<!--                                                                <div class="input-group-prepend">-->
+<!--																						<span-->
+<!--                                                                                                class="input-group-text">户主基本信息</span>-->
+<!--                                                                </div>-->
+<!--                                                                <input v-model="input_message.name"-->
+<!--                                                                       type="text" class="form-control"-->
+<!--                                                                       placeholder="姓名">-->
+<!--                                                                <input-->
+<!--                                                                        v-model="input_message.ownerid"-->
+<!--                                                                        type="text" class="form-control"-->
+<!--                                                                        placeholder="身份证"-->
+<!--                                                                        style="width: 150px;">-->
+<!--                                                                <input v-model="input_message.sex"-->
+<!--                                                                       type="text" class="form-control"-->
+<!--                                                                       placeholder="性别"-->
+<!--                                                                       style="width: 20px;">-->
+<!--                                                                <input-->
+<!--                                                                        v-model="input_message.birthday"-->
+<!--                                                                        type="text" class="form-control"-->
+<!--                                                                        placeholder="出生年月">-->
+<!--                                                                <input v-model="input_message.race"-->
+<!--                                                                       type="text" class="form-control"-->
+<!--                                                                       placeholder="种族">-->
+<!--                                                            </div>-->
+<!--                                                            <div class="input-group mb-3">-->
+<!--                                                                <div class="input-group-prepend">-->
+<!--																						<span-->
+<!--                                                                                                class="input-group-text">户主工作信息</span>-->
+<!--                                                                </div>-->
+<!--                                                                <input-->
+<!--                                                                        v-model="input_message.political"-->
+<!--                                                                        type="text" class="form-control"-->
+<!--                                                                        placeholder="政治面貌">-->
+<!--                                                                <input-->
+<!--                                                                        v-model="input_message.education"-->
+<!--                                                                        type="text" class="form-control"-->
+<!--                                                                        placeholder="学历"-->
+<!--                                                                        style="width: 20px;">-->
+<!--                                                                <input v-model="input_message.job"-->
+<!--                                                                       type="text" class="form-control"-->
+<!--                                                                       placeholder="职务或专长">-->
+<!--                                                                <input v-model="input_message.phone"-->
+<!--                                                                       type="text" class="form-control"-->
+<!--                                                                       placeholder="联系电话"-->
+<!--                                                                       style="width: 50px;">-->
+<!--                                                                <input v-model="input_message.fc"-->
+<!--                                                                       type="text" class="form-control"-->
+<!--                                                                       placeholder="是否建立档立卡"-->
+<!--                                                                       style="width: 50px;">-->
+<!--                                                            </div>-->
+<!--                                                            <div class="input-group mb-3">-->
+<!--                                                                <div class="input-group-prepend">-->
+<!--																						<span-->
+<!--                                                                                                class="input-group-text">家庭信息</span>-->
+<!--                                                                </div>-->
+<!--                                                                <textarea-->
+<!--                                                                        v-model="input_message.income"-->
+<!--                                                                        class="form-control" rows="7"-->
+<!--                                                                        placeholder="年均收入及来源"></textarea>-->
+<!--                                                                <textarea-->
+<!--                                                                        v-model="input_message.fielding"-->
+<!--                                                                        class="form-control" rows="7"-->
+<!--                                                                        placeholder="耕地面积"></textarea>-->
+<!--                                                                <textarea-->
+<!--                                                                        v-model="input_message.breeding"-->
+<!--                                                                        class="form-control" rows="7"-->
+<!--                                                                        placeholder="养殖情况"></textarea>-->
+<!--                                                                <textarea-->
+<!--                                                                        v-model="input_message.causeofpoverty"-->
+<!--                                                                        class="form-control" rows="7"-->
+<!--                                                                        placeholder="致贫原因"></textarea>-->
+<!--                                                                <textarea-->
+<!--                                                                        v-model="input_message.remark"-->
+<!--                                                                        class="form-control" rows="7"-->
+<!--                                                                        placeholder="备注"></textarea>-->
+<!--                                                            </div>-->
+<!--                                                        </form>-->
+<!--                                                        <form class="form-group">-->
+<!--                                                            <div class="input-group mb-3"-->
+<!--                                                                 style="width:225px;">-->
+<!--                                                                <div class="input-group-prepend">-->
+<!--																						<span-->
+<!--                                                                                                class="input-group-text">家庭总人口</span>-->
+<!--                                                                </div>-->
+<!--                                                                <input-->
+<!--                                                                        v-model="input_message.familynum"-->
+<!--                                                                        type="text" class="form-control"-->
+<!--                                                                        placeholder="人数">-->
+<!--                                                            </div>-->
+
+<!--                                                        </form>-->
+<!--                                                        <form class="form-group">-->
+<!--                                                            <div class="input-group mb-3"-->
+<!--                                                                 style="width:210px;">-->
+<!--                                                                <div class="input-group-prepend">-->
+<!--																						<span-->
+<!--                                                                                                class="input-group-text">属于组</span>-->
+<!--                                                                </div>-->
+<!--                                                                <select class="form-control"-->
+<!--                                                                        v-model="input_message.groupnum">-->
+<!--                                                                    <option-->
+<!--                                                                            v-for="(group, groupnum, index) in Persons">-->
+<!--                                                                        {{Groups2['g'+groupnum]}}-->
+<!--                                                                    </option>-->
+<!--                                                                </select>-->
+<!--                                                            </div>-->
+<!--                                                        </form>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+<!--                                                <div class="modal-footer">-->
+<!--                                                    <button type="button"-->
+<!--                                                            v-on:click="Botton_Cg_Household()"-->
+<!--                                                            class="btn btn-secondary">修改</button>-->
+<!--                                                </div>-->
+<!--                                                <div id="bottonrehdalerts"></div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <button type="button"-->
+<!--                                            v-on:click="Botton_Isdelete()"-->
+<!--                                            class="btn btn-outline-info btn-sm"-->
+<!--                                            style="font-size:10px;line-height: 12px;">删除该户</button>-->
+<!--                                    <div class="modal fade" id="delhouseholdmodal">-->
+<!--                                        <div class="modal-dialog  modal-lg">-->
+<!--                                            <div class="modal-content">-->
+
+<!--                                                &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+<!--                                                <div class="modal-header">-->
+<!--                                                    <h4 class="modal-title">确认删除该户？</h4>-->
+<!--                                                    <button type="button" class="close"-->
+<!--                                                            data-dismiss="modal">&times;</button>-->
+<!--                                                </div>-->
+
+<!--                                                &lt;!&ndash; 模态框主体 &ndash;&gt;-->
+<!--                                                <div class="modal-body">-->
+<!--                                                    <div class="container">-->
+
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+<!--                                                <div class="modal-footer">-->
+<!--                                                    <button type="button"-->
+<!--                                                            v-on:click="Botton_DEL_Household(print_message.ownerid)"-->
+<!--                                                            class="btn btn-secondary">删除</button>-->
+<!--                                                </div>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col rounded border bg-white" style="height: 23%;">-->
+<!--                <div class="row border" style="height: 34%;">-->
+<!--                    <div class="col-2 border"><strong>家庭年均收入以及主要来源</strong></div>-->
+<!--                    <div class="col border">{{print_message.income}}</div>-->
+<!--                </div>-->
+<!--                <div class="row border" style="height: 33%;">-->
+<!--                    <div class="col-2 border"><strong>耕地面积</strong></div>-->
+<!--                    <div class="col border">{{print_message.fielding}}</div>-->
+<!--                </div>-->
+<!--                <div class="row border" style="height: 33%;">-->
+<!--                    <div class="col-2 border"><strong>养殖情况</strong></div>-->
+<!--                    <div class="col border">{{print_message.breeding}}</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col rounded border bg-white" style="height: 33%;overflow: auto;">-->
+<!--                <div class="row border rounded">-->
+<!--                    <div class="col-9"><strong>家庭主要成员</strong></div>-->
+<!--                    <div class="col"><button type="button" class="btn btn-outline-info btn-sm"-->
+<!--                                             v-on:click="Botton_Refrash_input_viliger()"-->
+<!--                                             data-toggle="modal">添加人口</button></div>-->
+<!--                    <div class="modal fade" id="newviligermodal">-->
+<!--                        <div class="modal-dialog  modal-lg">-->
+<!--                            <div class="modal-content">-->
+
+<!--                                &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+<!--                                <div class="modal-header">-->
+<!--                                    <h4 class="modal-title">添加村民</h4>-->
+<!--                                    <button type="button" class="close"-->
+<!--                                            data-dismiss="modal">&times;</button>-->
+<!--                                </div>-->
+<!--                                <div class="modal-body">-->
+<!--                                    <div class="container">-->
+<!--                                        <div class="input-group mb-3">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--                                                <span class="input-group-text">村民信息</span>-->
+<!--                                            </div>-->
+<!--                                            <input v-model="input_viliger.name" type="text"-->
+<!--                                                   class="form-control" placeholder="姓名">-->
+<!--                                            <input v-model="input_viliger.id" type="text"-->
+<!--                                                   class="form-control" placeholder="身份证"-->
+<!--                                                   style="width: 120px;">-->
+<!--                                            <input v-model="input_viliger.sex" type="text"-->
+<!--                                                   class="form-control" placeholder="性别">-->
+<!--                                        </div>-->
+<!--                                        <div class="input-group mb-3">-->
+<!--                                            <input v-model="input_viliger.birthday" type="text"-->
+<!--                                                   class="form-control" placeholder="电话号">-->
+<!--                                            <input v-model="input_viliger.job" type="text"-->
+<!--                                                   class="form-control" placeholder="职务或特长">-->
+<!--                                            <input v-model="input_viliger.relation" type="text"-->
+<!--                                                   class="form-control" placeholder="与户主关系"-->
+<!--                                                   style="width: 40px;">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+<!--                                <div class="modal-footer">-->
+<!--                                    <button type="button" v-on:click="Botton_ADD_Viliger()"-->
+<!--                                            class="btn btn-secondary">新建</button>-->
+<!--                                </div>-->
+<!--                                <div id="bottonaddvgalerts"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <table class="table table-condensed table-hover table-sm">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>姓名</th>-->
+<!--                        <th>性别</th>-->
+<!--                        <th>身份证</th>-->
+<!--                        <th>电话号</th>-->
+<!--                        <th>职业或专长</th>-->
+<!--                        <th>与户主关系</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr v-for="(viliger, id, index) in print_message.viligers">-->
+<!--                        <td>{{viliger.name}}</td>-->
+<!--                        <td>{{viliger.sex}}</td>-->
+<!--                        <td>{{viliger.id}}</td>-->
+<!--                        <td>{{viliger.birthday}}</td>-->
+<!--                        <td>{{viliger.job}}</td>-->
+<!--                        <td>{{viliger.relation}}</td>-->
+<!--                        <td>-->
+<!--                            <div class="col"><button class="btn border radio"-->
+<!--                                                     v-on:click="Botton_DEL_Viliger(viliger.id)">x</button></div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            <div class="col rounded border bg-white" style="height: 22%;">-->
+<!--                <div class="row border" style="height: 33%;">-->
+<!--                    <div class="col-2 border"><strong>致贫原因</strong></div>-->
+<!--                    <div class="col border">{{print_message.causeofpoverty}}</div>-->
+<!--                </div>-->
+<!--                <div class="row border" style="height: 66%;">-->
+<!--                    <div class="col-2 border"><strong>备注</strong></div>-->
+<!--                    <div class="col border">{{print_message.remark}}</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->

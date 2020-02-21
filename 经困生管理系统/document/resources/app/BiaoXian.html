@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>经困生管理系统</title>
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.css"/>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        a {
+            font-family: Arial, sans-serif;
+        }
+
+        .starlight {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper {
+            background-color: hsl(270, 10%, 10%);
+            display: flex;
+            justify-content: center;
+            height: auto;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .title {
+            color: white;
+            font-size: 4em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .subtitle {
+            color: hsla(0, 0%, 100%, 0.3);
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .head {
+            text-align: center;
+            justify-content: center;
+            height: auto;
+            flex-direction: column;
+            height: 100%;
+            font-size: 2em;
+        }
+        .img{
+            background-image: url("4.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+
+    </style>
+    <!--    <script src="preload.js"></script>-->
+
+</head>
+
+<body>
+
+<div id="top_bottoms" style="height: 6%;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="navbar-brand" href="index.html">返回</a>
+        </div>
+
+    </div>
+</div>
+<div id="body" class="container-fluid rounded border" style="height: 93%;">
+    <div class="row" style="height: 100%;">
+        <!--MENU-->
+        <div id="menu_body" class="col-2 bg-white container-fluid rounded border">
+            <ul class="nav nav-pills flex-column" role="tablist">
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#renZhen">学习态度认真，获得奖学金</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#weiJi">存在违纪行为</a></li>
+
+            </ul>
+        </div>
+        <!--Main display?-->
+        <div id="main_body" class="col bg-light container-fluid rounded border" style="height: 100%;">
+            <div id="main_alert_display" style="position: fixed; left: 50%; z-index:999;"></div>
+            <!--页面-->
+<!--            <div id="info_displayer" class="tab-content img" style="height: 100%;">-->
+            <div id="happyNewYear" class="tab-content" style="height: 100%;">
+                <!--页面 经困生总体情况-->
+
+                <div id="renZhen" class="container-fluid tab-pane" style="height: 100%;overflow: scroll">
+                    <div>&nbsp;&nbsp;&nbsp;</div>
+                    <div class="container-fluid bg-light">
+                        <button type="button" v-on:click="Botton_Refrash_input_message()"
+                                class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"
+                                data-target="#newconstructionmodal">登记学生信息
+                        </button>
+                    </div>
+                    <span class="head" >
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                        经困生信息
+                    </span>
+                    <div>
+                        <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">
+                            <table class="table table-condensed table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+
+                                </tr>
+                                </thead>
+                                <tbody v-for="(construction,uid,index) in Constructions" >
+                                <tr v-if= "construction.sourse=='23' ">
+                                    <td>{{construction.numID}}</td>
+                                    <td>{{construction.stdName}}</td>
+
+                                    <td>
+                                        <div class="col btn-group-sm">
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_Re_Construction(uid)">查看照片
+                                            </button>
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_DEL_Construction(uid)">删除
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="weiJi" class="container-fluid tab-pane" style="height: 100%;overflow: scroll">
+                    <div>&nbsp;&nbsp;&nbsp;</div>
+                    <div class="container-fluid bg-light">
+                        <button type="button" v-on:click="Botton_Refrash_input_message()"
+                                class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"
+                                data-target="#newconstructionmodal">登记学生信息
+                        </button>
+                    </div>
+                    <span class="head" >
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                        经困生信息
+                    </span>
+                    <div>
+                        <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">
+                            <table class="table table-condensed table-hover table-sm">
+                                <thead>
+                                <tr>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+
+                                </tr>
+                                </thead>
+                                <tbody v-for="(construction,uid,index) in Constructions" >
+                                <tr v-if= "construction.sourse=='24' ">
+                                    <td>{{construction.numID}}</td>
+                                    <td>{{construction.stdName}}</td>
+
+                                    <td>
+                                        <div class="col btn-group-sm">
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_Re_Construction(uid)">查看照片
+                                            </button>
+                                            <button class="btn border radio btn-outline-light text-black-50"
+                                                    v-on:click="Botton_DEL_Construction(uid)">删除
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal fade" id="newconstructionmodal">
+
+                    <div class="modal-dialog  modal-lg">
+                        <div class="modal-content">
+
+                            <!-- 模态框头部 -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">登记学生信息</h4>
+
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+                            <div class="modal-body">
+                                <div class="container form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">学生信息</span>
+                                        </div>
+                                        <input v-model="input_message.numID" type="text"
+                                               class="form-control" placeholder="学号">
+                                        <input v-model="input_message.stdName" type="text"
+                                               class="form-control" placeholder="姓名">
+                                    </div>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">所属情况</span>
+                                        <select class="selectpicker form-control" data-style="btn-primary" style="min-width: 100px"
+                                                v-model="input_message.sourse">
+                                            <option disabled value=""></option>
+                                            <option value="1" >烈士子女</option>
+                                            <option value="2">孤儿</option>
+                                            <option value="3">建档立卡</option>
+                                            <option value="4">低保户</option>
+                                            <option value="5">生源地贷款</option>
+                                            <option value="6">单亲家庭</option>
+                                            <option value="7">家庭成员残疾</option>
+                                            <option value="8">家庭成员近期患一般性疾病</option>
+                                            <option value="9">家庭成员长期患病（慢性病）</option>
+                                            <option value="10">家庭成员遭遇车祸等重大特发事件</option>
+                                            <option value="11">家庭成员长期（突发）患重大疾病</option>
+                                            <option value="12">其他子女在上学（接受义务教育）</option>
+                                            <option value="25">其他子女在接受非义务教育</option>
+                                            <option value="13">赡养1-2位老人均身体健康</option>
+                                            <option value="14">赡养1-2位老人，但患重大疾病或常年患病</option>
+                                            <option value="15">赡养2位以上老人均身体健康</option>
+                                            <option value="16">赡养2位以上老人，但换重大疾病或常年患病</option>
+                                            <option value="17">父母双方均有工作，但收入低</option>
+                                            <option value="18">纯农户，父母双方均务农，但收入低</option>
+                                            <option value="19">父母一方无稳定收入来源，另一方收入低</option>
+                                            <option value="20">父母均无稳定工作，无稳定收入来源</option>
+                                            <option value="21">家庭欠款情况</option>
+                                            <option value="22">家庭遭遇自然灾害</option>
+                                            <option value="23">学习态度认真，获得奖学金</option>
+                                            <option value="24">存在违纪行为</option>
+
+
+
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!-- 模态框底部 -->
+                            <div class="modal-footer">
+                                <button type="button" v-on:click="Botton_ADD_Construction()"
+                                        class="btn btn-secondary">新建
+                                </button>
+                            </div>
+                            <div id="bottonaddptalert"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="reconstructionmodal">
+                    <div class="modal-dialog  modal-lg">
+                        <div class="modal-content">
+                            <!-- 模态框头部 -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">查看照片</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">学生信息</span>
+                                        </div>
+                                        <input v-model="input_message.numID" type="text" class="form-control" disabled="disabled"
+                                               placeholder="姓名:">
+                                        <input v-model="input_message.stdName" type="text" disabled="disabled"
+                                               class="form-control" placeholder="学号:">
+
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">学生照片</span>
+                                        <input id = "upload" type="file" onchange="change();"/>
+                                        <br/>
+
+                                        <br/>
+                                    </div>
+                                    <img v-bind:src= "input_message.photoSrc" width="100%" height="auto"/>
+
+
+                                </div>
+                            </div>
+                            <!-- 模态框底部 -->
+                            <div class="modal-footer">
+                                <button type="button" v-on:click="Botton_Show_Photo()"
+                                        class="btn btn-secondary">修改
+                                </button>
+                            </div>
+                            <div id="bottoncgctalert"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<script src="./bootstrap-fileinput/js/fileinput.js" type="text/javascript" charset="utf-8"></script>
+<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="./jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./index_funs.js" type="text/javascript" charset="utf-8"></script>
+<script src="./index_vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="./bootstrap-4.3.1-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./starlight.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    let image = '';
+    function change() {
+        console.log(this.value);
+        var obj = document.getElementById("upload");
+        var len = obj.files.length;
+        for (var i = 0; i < len; i++) {
+            var temp = obj.files[i].name;
+            image+=temp;
+            //   console.log(temp);
+        }
+        Construction_Vue.input_message.photoSrc="../../../照片/"+image;
+        //  window.COPY_Photo(Construction_Vue.input_message.photoSrc,"./dataPhoto/"+String(Construction_Vue.input_message.uid)+".jpg",Construction_Vue.input_message.uid);
+        image = '';
+    }
+
+</script>
+
+<!--<script>-->
+<!--    $('#housholdinfodisplay').hide();-->
+<!--    $('#body').hide();-->
+<!--    $('#top_bottoms').hide();-->
+<!--    $('#FrontPage').click(() => {-->
+<!--        console.log('点击首页');-->
+<!--        $('#body').show();-->
+<!--        $('#top_bottoms').show();-->
+<!--        $('#FrontPage').slideUp('slow');-->
+<!--    });-->
+<!--</script>-->
+
+</body>
+
+</html>

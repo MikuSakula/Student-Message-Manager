@@ -1,0 +1,654 @@
+<!-- 以上为第一部分 -->
+                <!--页面 经困生家庭类型-->
+                    <!--                <div id="ConstructionInformation" class="container-fluid tab-pane fade" style="height: 100%;">-->
+                    <!--                    <div class="container-fluid bg-light">-->
+                    <!--                        <div class="border rounded row">-->
+                    <!--                            <button type="button" v-on:click="Botton_Refrash_input_message()"-->
+                    <!--                                    class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"-->
+                    <!--                                    data-target="#newconstructionmodal">新建项目-->
+                    <!--                            </button>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="modal fade" id="newconstructionmodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">新建项目</h4>-->
+                    <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">项目信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.name" type="text" class="form-control"-->
+                    <!--                                                       placeholder="项目名称">-->
+                    <!--                                                <input v-model="input_message.begindate" type="text"-->
+                    <!--                                                       class="form-control" placeholder="申请时间">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">负责人信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.ownername" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人姓名">-->
+                    <!--                                                <input v-model="input_message.ownerphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">申请单位信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.unit" type="text" class="form-control"-->
+                    <!--                                                       placeholder="申请单位">-->
+                    <!--                                                <input v-model="input_message.unitphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="单位电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <textarea v-model="input_message.remark" class="form-control" rows="7"-->
+                    <!--                                                      placeholder="备注"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_ADD_Construction()"-->
+                    <!--                                                class="btn btn-secondary">新建-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottonaddctalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">-->
+                    <!--                        <table class="table table-condensed table-hover table-sm">-->
+                    <!--                            <thead>-->
+                    <!--                            <tr>-->
+                    <!--                                <th>序号</th>-->
+                    <!--                                <th>项目名称</th>-->
+                    <!--                                <th>负责人姓名</th>-->
+                    <!--                                <th>负责人电话</th>-->
+                    <!--                                <th>申请单位</th>-->
+                    <!--                                <th>单位电话</th>-->
+                    <!--                                <th>申请时间</th>-->
+                    <!--                                <th>备注</th>-->
+                    <!--                            </tr>-->
+                    <!--                            </thead>-->
+                    <!--                            <tbody>-->
+                    <!--                            <tr v-for="(construction, uid, index) in Constructions">-->
+                    <!--                                <td>{{index+1}}</td>-->
+                    <!--                                <td>{{construction.name}}</td>-->
+                    <!--                                <td>{{construction.ownername}}</td>-->
+                    <!--                                <td>{{construction.ownerphone}}</td>-->
+                    <!--                                <td>{{construction.unit}}</td>-->
+                    <!--                                <td>{{construction.unitphone}}</td>-->
+                    <!--                                <td>{{construction.begindate}}</td>-->
+                    <!--                                <td>{{construction.remark}}</td>-->
+                    <!--                                <td>-->
+                    <!--                                    <div class="col btn-group-sm">-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_Dis_Construction_message(uid)">详情-->
+                    <!--                                        </button>-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_Re_Construction(uid)">修改-->
+                    <!--                                        </button>-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_DEL_Construction(uid)">删除-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            </tbody>-->
+                    <!--                        </table>-->
+                    <!--                        <div class="modal fade" id="reconstructionmodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">修改项目</h4>-->
+                    <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">项目信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.name" type="text" class="form-control"-->
+                    <!--                                                       placeholder="项目名称">-->
+                    <!--                                                <input v-model="input_message.begindate" type="text"-->
+                    <!--                                                       class="form-control" placeholder="申请时间">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">负责人信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.ownername" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人姓名">-->
+                    <!--                                                <input v-model="input_message.ownerphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">申请单位信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.unit" type="text" class="form-control"-->
+                    <!--                                                       placeholder="申请单位">-->
+                    <!--                                                <input v-model="input_message.unitphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="单位电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <textarea v-model="input_message.remark" class="form-control" rows="7"-->
+                    <!--                                                      placeholder="备注"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_Cg_Construction()"-->
+                    <!--                                                class="btn btn-secondary">修改-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottoncgctalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="modal fade" id="displayconstructionmessagemodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">项目详细信息和进度</h4>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                                        <textarea v-model="input_message.message" class="form-control"-->
+                    <!--                                                                  rows="12"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button"-->
+                    <!--                                                v-on:click="Botton_Cg_Construction_message(input_message.uid)"-->
+                    <!--                                                class="btn btn-secondary">确定-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottondsctalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+
+                    <!--                <div id="EquipmentsInformation" class="container-fluid tab-pane fade" style="height: 100%;">-->
+                    <!--                    <div class="container-fluid bg-light">-->
+                    <!--                        <div class="btn-group border rounded row">-->
+                    <!--                            <button type="button" v-on:click="Botton_Refrash_input_message()"-->
+                    <!--                                    class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"-->
+                    <!--                                    data-target="#newequipmentmodal">登记设备-->
+                    <!--                            </button>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="modal fade" id="newequipmentmodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">登记设备</h4>-->
+                    <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">设备信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.name" type="text" class="form-control"-->
+                    <!--                                                       placeholder="设备名称">-->
+                    <!--                                                <input v-model="input_message.begindate" type="text"-->
+                    <!--                                                       class="form-control" placeholder="登记时间">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">负责人信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.ownername" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人姓名">-->
+                    <!--                                                <input v-model="input_message.ownerphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <textarea v-model="input_message.remark" class="form-control" rows="7"-->
+                    <!--                                                      placeholder="备注"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_ADD_Equipment()"-->
+                    <!--                                                class="btn btn-secondary">新建-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottonaddeqalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">-->
+                    <!--                        <table class="table table-condensed table-hover table-sm">-->
+                    <!--                            <thead>-->
+                    <!--                            <tr>-->
+                    <!--                                <th>序号</th>-->
+                    <!--                                <th>设备名称</th>-->
+                    <!--                                <th>负责人姓名</th>-->
+                    <!--                                <th>负责人电话</th>-->
+                    <!--                                <th>申请时间</th>-->
+                    <!--                                <th>备注</th>-->
+                    <!--                            </tr>-->
+                    <!--                            </thead>-->
+                    <!--                            <tbody>-->
+                    <!--                            <tr v-for="(equipment, uid, index) in Equipments">-->
+                    <!--                                <td>{{index+1}}</td>-->
+                    <!--                                <td>{{equipment.name}}</td>-->
+                    <!--                                <td>{{equipment.ownername}}</td>-->
+                    <!--                                <td>{{equipment.ownerphone}}</td>-->
+                    <!--                                <td>{{equipment.begindate}}</td>-->
+                    <!--                                <td>{{equipment.remark}}</td>-->
+                    <!--                                <td>-->
+                    <!--                                    <div class="col btn-group-sm">-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_Dis_Equipment_message(uid)">详情-->
+                    <!--                                        </button>-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_Re_Equipment(uid)">修改-->
+                    <!--                                        </button>-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_DEL_Equipment(uid)">删除-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            </tbody>-->
+                    <!--                        </table>-->
+                    <!--                        <div class="modal fade" id="reequipmentmodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">修改设备</h4>-->
+                    <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">设备信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.name" type="text" class="form-control"-->
+                    <!--                                                       placeholder="设备名称">-->
+                    <!--                                                <input v-model="input_message.begindate" type="text"-->
+                    <!--                                                       class="form-control" placeholder="登记时间">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">负责人信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.ownername" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人姓名">-->
+                    <!--                                                <input v-model="input_message.ownerphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <textarea v-model="input_message.remark" class="form-control" rows="7"-->
+                    <!--                                                      placeholder="备注"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_Cg_Equipment()"-->
+                    <!--                                                class="btn btn-secondary">修改-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottoncgeqalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="modal fade" id="displayequipmentmessagemodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">设备详细信息和用途</h4>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                                        <textarea v-model="input_message.message" class="form-control"-->
+                    <!--                                                                  rows="12"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button"-->
+                    <!--                                                v-on:click="Botton_Cg_Equipment_message(input_message.uid)"-->
+                    <!--                                                class="btn btn-secondary">确定-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottondseqalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+
+                    <!--                <div id="AlleviationsInformation" class="container-fluid tab-pane fade" style="height: 100%;">-->
+                    <!--                    <div class="container-fluid bg-light">-->
+                    <!--                        <div class="btn-group border rounded row">-->
+                    <!--                            <button type="button" v-on:click="Botton_Refrash_input_message()"-->
+                    <!--                                    class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"-->
+                    <!--                                    data-target="#newalleviationmodal">登记扶贫记录-->
+                    <!--                            </button>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="modal fade" id="newalleviationmodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">登记扶贫记录</h4>-->
+                    <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">扶贫信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.name" type="text" class="form-control"-->
+                    <!--                                                       placeholder="扶贫记录标称">-->
+                    <!--                                                <input v-model="input_message.begindate" type="text"-->
+                    <!--                                                       class="form-control" placeholder="登记时间">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">负责人信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.ownername" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人姓名">-->
+                    <!--                                                <input v-model="input_message.ownerphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <textarea v-model="input_message.remark" class="form-control" rows="7"-->
+                    <!--                                                      placeholder="备注"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_ADD_Alleviation()"-->
+                    <!--                                                class="btn btn-secondary">新建-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottonaddalalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">-->
+                    <!--                        <table class="table table-condensed table-hover table-sm">-->
+                    <!--                            <thead>-->
+                    <!--                            <tr>-->
+                    <!--                                <th>序号</th>-->
+                    <!--                                <th>扶贫名称</th>-->
+                    <!--                                <th>负责人姓名</th>-->
+                    <!--                                <th>负责人电话</th>-->
+                    <!--                                <th>申请时间</th>-->
+                    <!--                                <th>备注</th>-->
+                    <!--                            </tr>-->
+                    <!--                            </thead>-->
+                    <!--                            <tbody>-->
+                    <!--                            <tr v-for="(alleviation, uid, index) in Alleviations">-->
+                    <!--                                <td>{{index+1}}</td>-->
+                    <!--                                <td>{{alleviation.name}}</td>-->
+                    <!--                                <td>{{alleviation.ownername}}</td>-->
+                    <!--                                <td>{{alleviation.ownerphone}}</td>-->
+                    <!--                                <td>{{alleviation.begindate}}</td>-->
+                    <!--                                <td>{{alleviation.remark}}</td>-->
+                    <!--                                <td>-->
+                    <!--                                    <div class="col btn-group-sm">-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_Dis_Alleviation_message(uid)">详情-->
+                    <!--                                        </button>-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_Re_Alleviation(uid)">修改-->
+                    <!--                                        </button>-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_DEL_Alleviation(uid)">删除-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            </tbody>-->
+                    <!--                        </table>-->
+                    <!--                        <div class="modal fade" id="realleviationmodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">修改设备</h4>-->
+                    <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">设备信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.name" type="text" class="form-control"-->
+                    <!--                                                       placeholder="设备名称">-->
+                    <!--                                                <input v-model="input_message.begindate" type="text"-->
+                    <!--                                                       class="form-control" placeholder="登记时间">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">负责人信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.ownername" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人姓名">-->
+                    <!--                                                <input v-model="input_message.ownerphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <textarea v-model="input_message.remark" class="form-control" rows="7"-->
+                    <!--                                                      placeholder="备注"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_Cg_Alleviation()"-->
+                    <!--                                                class="btn btn-secondary">修改-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottoncgalalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="modal fade" id="displayalleviationmessagemodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">扶贫详细信息</h4>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                                        <textarea v-model="input_message.message" class="form-control"-->
+                    <!--                                                                  rows="12"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button"-->
+                    <!--                                                v-on:click="Botton_Cg_Alleviation_message(input_message.uid)"-->
+                    <!--                                                class="btn btn-secondary">确定-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottondsalalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+
+                    <!--                <div id="DogsInformation" class="container-fluid tab-pane fade" style="height: 100%;">-->
+                    <!--                    <div class="container-fluid bg-light">-->
+                    <!--                        <div class="btn-group border rounded row">-->
+                    <!--                            <button type="button" v-on:click="Botton_Refrash_input_message()"-->
+                    <!--                                    class="btn btn-outline-info border rounded btn-lg" data-toggle="modal"-->
+                    <!--                                    data-target="#newdogmodal">登记雪橇犬-->
+                    <!--                            </button>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="modal fade" id="newdogmodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">登记雪橇犬</h4>-->
+                    <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">雪橇犬信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.name" type="text" class="form-control"-->
+                    <!--                                                       placeholder="雪橇犬名称">-->
+                    <!--                                                <input v-model="input_message.begindate" type="text"-->
+                    <!--                                                       class="form-control" placeholder="登记时间">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">负责人信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.ownername" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人姓名">-->
+                    <!--                                                <input v-model="input_message.ownerphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <textarea v-model="input_message.remark" class="form-control" rows="7"-->
+                    <!--                                                      placeholder="备注"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_ADD_Dog()"-->
+                    <!--                                                class="btn btn-secondary">新建-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottonadddgalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="container-fluid bg-light border rounded" style="height: 100%;overflow: auto;">-->
+                    <!--                        <table class="table table-condensed table-hover table-sm">-->
+                    <!--                            <thead>-->
+                    <!--                            <tr>-->
+                    <!--                                <th>序号</th>-->
+                    <!--                                <th>雪橇犬名称</th>-->
+                    <!--                                <th>负责人姓名</th>-->
+                    <!--                                <th>负责人电话</th>-->
+                    <!--                                <th>申请时间</th>-->
+                    <!--                                <th>备注</th>-->
+                    <!--                            </tr>-->
+                    <!--                            </thead>-->
+                    <!--                            <tbody>-->
+                    <!--                            <tr v-for="(dog, uid, index) in Dogs">-->
+                    <!--                                <td>{{index+1}}</td>-->
+                    <!--                                <td>{{dog.name}}</td>-->
+                    <!--                                <td>{{dog.ownername}}</td>-->
+                    <!--                                <td>{{dog.ownerphone}}</td>-->
+                    <!--                                <td>{{dog.begindate}}</td>-->
+                    <!--                                <td>{{dog.remark}}</td>-->
+                    <!--                                <td>-->
+                    <!--                                    <div class="col btn-group-sm">-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_Dis_Dog_message(uid)">详情-->
+                    <!--                                        </button>-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_Re_Dog(uid)">修改-->
+                    <!--                                        </button>-->
+                    <!--                                        <button class="btn border radio btn-outline-light text-black-50"-->
+                    <!--                                                v-on:click="Botton_DEL_Dog(uid)">删除-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                </td>-->
+                    <!--                            </tr>-->
+                    <!--                            </tbody>-->
+                    <!--                        </table>-->
+                    <!--                        <div class="modal fade" id="redogmodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">修改雪橇犬信息</h4>-->
+                    <!--                                        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">雪橇犬信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.name" type="text" class="form-control"-->
+                    <!--                                                       placeholder="雪橇犬名称">-->
+                    <!--                                                <input v-model="input_message.begindate" type="text"-->
+                    <!--                                                       class="form-control" placeholder="登记时间">-->
+                    <!--                                            </div>-->
+                    <!--                                            <div class="input-group mb-3">-->
+                    <!--                                                <div class="input-group-prepend">-->
+                    <!--                                                    <span class="input-group-text">负责人信息</span>-->
+                    <!--                                                </div>-->
+                    <!--                                                <input v-model="input_message.ownername" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人姓名">-->
+                    <!--                                                <input v-model="input_message.ownerphone" type="text"-->
+                    <!--                                                       class="form-control" placeholder="负责人电话">-->
+                    <!--                                            </div>-->
+                    <!--                                            <textarea v-model="input_message.remark" class="form-control" rows="7"-->
+                    <!--                                                      placeholder="备注"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_Cg_Dog()"-->
+                    <!--                                                class="btn btn-secondary">修改-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottoncgdgalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="modal fade" id="displaydogmessagemodal">-->
+                    <!--                            <div class="modal-dialog  modal-lg">-->
+                    <!--                                <div class="modal-content">-->
+                    <!--                                    &lt;!&ndash; 模态框头部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-header">-->
+                    <!--                                        <h4 class="modal-title">雪橇犬详细信息</h4>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="modal-body">-->
+                    <!--                                        <div class="container form-group">-->
+                    <!--                                                        <textarea v-model="input_message.message" class="form-control"-->
+                    <!--                                                                  rows="12"></textarea>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    &lt;!&ndash; 模态框底部 &ndash;&gt;-->
+                    <!--                                    <div class="modal-footer">-->
+                    <!--                                        <button type="button" v-on:click="Botton_Cg_Dog_message(input_message.uid)"-->
+                    <!--                                                class="btn btn-secondary">确定-->
+                    <!--                                        </button>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div id="bottondsdgalert"></div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->

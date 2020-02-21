@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>经困生管理系统</title>
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.css">
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        a {
+            font-family: Arial, sans-serif;
+        }
+
+        .starlight {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper {
+            background-color: hsl(270, 10%, 10%);
+            display: flex;
+            justify-content: center;
+            height: auto;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .title {
+            color: white;
+            font-size: 4em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .subtitle {
+            color: hsla(0, 0%, 100%, 0.3);
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .head {
+            text-align: center;
+            justify-content: center;
+            height: auto;
+            flex-direction: column;
+            height: 100%;
+            font-size: 2em;
+        }
+        .img{
+            background-image: url("4.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    </style>
+<!--    <script src="preload.js"></script>-->
+
+</head>
+
+<body>
+<!--首页-->
+
+<!--<div id="FrontPage" class="container-fluid tab-pane active starlight" style="height: 100%;">-->
+<!--    <div class="wrapper">-->
+<!--        <h1 class="title">欢迎使用经困生管理系统 </h1>-->
+<!--        <h2 class="subtitle">Powered by MikuSakula 2019</h2>-->
+<!--        <h2 style="color:#fff;">鼠标点击进入</h2>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div id="top_bottoms" style="height: 6%;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#">经困生管理系统</a>
+        </div>
+        <!-- 按钮：退出
+        <a v-on:click="exit()" class="btn btn-danger navbar-right" href="#"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
+        -->
+    </div>
+</div>
+<div id="body" class="container-fluid rounded border" style="height: 93%;">
+    <div class="row" style="height: 100%;">
+        <!--MENU-->
+        <div id="menu_body" class="col-2 bg-white container-fluid rounded border" style="width: 120%">
+            <ul class="nav nav-pills flex-column" role="tablist">
+                <li class="nav-item"><a class="nav-link" href = Grade.html>经困生总体情况</a></li>
+                <li class="nav-item"><a class="nav-link" href = LeiXing.html>经困生家庭类型</a></li>
+                <li class="nav-item"><a class="nav-link" href = XianZhuang.html>家庭成员现状</a></li>
+                <li class="nav-item"><a class="nav-link" href = ShouRu.html>家庭收入情况</a></li>
+                <li class="nav-item"><a class="nav-link" href = BiaoXian.html>学生在线表现</a></li>
+            </ul>
+        </div>
+        <!--Main display?-->
+        <div id="main_body" class="col bg-light container-fluid rounded border" style="height: 100%;">
+            <div id="main_alert_display" style="position: fixed; left: 50%; z-index:999;"></div>
+            <!--页面-->
+            <div id="info_displayer" class="tab-content img" style="height: 100%;">
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<script src="./bootstrap-fileinput/js/fileinput.js" type="text/javascript" charset="utf-8"></script>
+<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="./jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./index_funs.js" type="text/javascript" charset="utf-8"></script>
+<script src="./index_vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="./bootstrap-4.3.1-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./starlight.js" type="text/javascript" charset="utf-8"></script>
+<!--<script>-->
+<!--    //$('#housholdinfodisplay').hide();-->
+<!--    if(!flag) {-->
+<!--        $('#body').hide();-->
+<!--        $('#top_bottoms').hide();-->
+<!--        $('#FrontPage').click(() => {-->
+<!--            console.log('点击首页');-->
+<!--            $('#body').show();-->
+<!--            $('#top_bottoms').show();-->
+<!--            $('#FrontPage').slideUp('slow');-->
+<!--        });-->
+<!--        flag = 1;-->
+<!--    }-->
+<!--</script>-->
+
+</body>
+
+</html>

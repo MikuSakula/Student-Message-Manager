@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>经困生管理系统</title>
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.css">
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        a {
+            font-family: Arial, sans-serif;
+        }
+
+        .starlight {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper {
+            /*background-color: hsl(270, 10%, 10%);*/
+            display: flex;
+            /*justify-content: center;*/
+            height: auto;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .title {
+            color: white;
+            font-size: 4em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .subtitle {
+            color: hsla(0, 0%, 100%, 0.3);
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .head {
+            text-align: center;
+            justify-content: center;
+            height: auto;
+            flex-direction: column;
+            height: 100%;
+            font-size: 2em;
+        }
+        .home-video {
+            z-index: 100;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: fill;/*这里是关键*/
+            width: auto;
+            height: auto;
+            -ms-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+            mix-blend-mode: screen;
+            background-size: cover;
+        }
+
+    </style>
+    <!--    <script src="preload.js"></script>-->
+
+</head>
+
+<body>
+<!--首页-->
+
+<div id="FrontPage" class="container-fluid tab-pane active starlight" style="height: 100%;">
+
+
+
+    <div class="header" style="width:100%;position: relative;">
+
+        <video id="homeVideo" class="home-video" autoplay = "autoplay" loop="loop">
+            <source src="homeVideo.mp4" type="video/mp4">
+        </video>
+        <div><br></div><div><br></div><div><br></div><div><br></div><div><br></div>
+        <div><br></div><div><br></div><div><br></div><div><br></div><div><br></div>
+        <div class="wrapper">
+
+            <h1 class="title">欢迎使用经困生管理系统 </h1>
+            <h2 class="subtitle">Powered by MikuSakula 2019</h2>
+            <h2 style="color:#fff;">鼠标点击进入</h2>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+<script src="./bootstrap-fileinput/js/fileinput.js" type="text/javascript" charset="utf-8"></script>
+<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="./jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./index_funs.js" type="text/javascript" charset="utf-8"></script>
+<script src="./index_vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="./bootstrap-4.3.1-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./starlight.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $('.home-video').height(window.innerHeight);
+    $('.header').height(window.innerHeight);
+    $(window).resize(function() {
+        $('.home-video').attr('height', window.innerHeight);
+        $('.home-video').attr('width', window.innerWidth);
+        $('.header').height(window.innerHeight);
+    });
+    document.getElementById('homeVideo').play();
+</script>
+<script>
+    //$('#housholdinfodisplay').hide();
+    if(!flag) {
+        $('#body').hide();
+        $('#top_bottoms').hide();
+        $('#FrontPage').click(() => {
+            window.location.href="index.html";
+            // $('#body').show();
+            // $('#top_bottoms').show();
+            $('#FrontPage').slideUp('slow');
+        });
+        flag = 1;
+    }
+</script>
+</body>
